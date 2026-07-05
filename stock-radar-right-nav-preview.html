@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>股票雷达｜右侧跟随导航预览</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #08111f;
+      --panel: #111d30;
+      --panel-2: #17263d;
+      --text: #e8eef8;
+      --muted: #9fb0c6;
+      --line: #293b56;
+      --blue: #60a5fa;
+      --green: #34d399;
+      --red: #fb7185;
+      --amber: #fbbf24;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 85% 0, rgba(37, 99, 235, .18), transparent 30%),
+        var(--bg);
+      font: 15px/1.65 system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+    }
+    a { color: #93c5fd; }
+    h1, h2, h3 { line-height: 1.25; }
+    h1 { margin: 0 0 8px; font-size: clamp(28px, 4vw, 42px); }
+    h2 { margin: 0 0 18px; font-size: 25px; }
+    h3 { margin: 0 0 9px; font-size: 18px; }
+    p { margin: 7px 0; }
+    .page {
+      width: min(1240px, calc(100% - 32px));
+      margin: auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 210px;
+      gap: 28px;
+    }
+    .content { min-width: 0; padding: 42px 0 70px; }
+    .hero { margin-bottom: 28px; }
+    .subtitle, .muted { color: var(--muted); }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .pill {
+      padding: 5px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(17, 29, 48, .75);
+      font-size: 13px;
+    }
+    section {
+      min-height: 40vh;
+      margin-bottom: 26px;
+      padding-top: 8px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(23, 38, 61, .96), rgba(17, 29, 48, .96));
+      box-shadow: 0 14px 38px rgba(0, 0, 0, .24);
+    }
+    .full { grid-column: 1 / -1; }
+    .positive { border-left: 4px solid var(--green); }
+    .negative { border-left: 4px solid var(--red); }
+    .watch { border-left: 4px solid var(--amber); }
+    .neutral { border-left: 4px solid var(--blue); }
+    .up { color: var(--green); }
+    .down { color: var(--red); }
+    dl {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 5px 12px;
+      margin: 14px 0 0;
+    }
+    dt { color: var(--muted); }
+    dd { margin: 0; }
+    .notice {
+      padding: 15px 18px;
+      border: 1px solid #6b531b;
+      border-radius: 13px;
+      background: rgba(251, 191, 36, .08);
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td {
+      padding: 11px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    th { color: var(--muted); }
+
+    /* 右侧跟随节点导航 */
+    .rail { position: relative; }
+    .rail-inner {
+      position: sticky;
+      top: 24px;
+      margin-top: 42px;
+      padding: 16px 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(12, 23, 40, .9);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, .28);
+      backdrop-filter: blur(14px);
+    }
+    .rail-title {
+      padding: 0 9px 10px;
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .12em;
+    }
+    .rail a {
+      position: relative;
+      display: block;
+      margin: 3px 0;
+      padding: 9px 10px 9px 28px;
+      border-radius: 10px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: .18s ease;
+    }
+    .rail a::before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border: 1px solid #60728b;
+      border-radius: 50%;
+      transform: translateY(-50%);
+      transition: .18s ease;
+    }
+    .rail a:hover { color: var(--text); background: var(--panel); }
+    .rail a.active {
+      color: white;
+      background: linear-gradient(90deg, rgba(37, 99, 235, .28), rgba(37, 99, 235, .08));
+    }
+    .rail a.active::before {
+      border-color: var(--blue);
+      background: var(--blue);
+      box-shadow: 0 0 0 4px rgba(96, 165, 250, .13);
+    }
+    .rail-progress {
+      height: 3px;
+      margin: 8px 9px 3px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--line);
+    }
+    .rail-progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--blue);
+    }
+    .preview-note {
+      margin: 0 0 26px;
+      padding: 12px 15px;
+      border: 1px dashed #49617f;
+      border-radius: 12px;
+      color: var(--muted);
+      background: rgba(17, 29, 48, .45);
+    }
+    footer {
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+    @media (max-width: 900px) {
+      .page { display: block; }
+      .rail {
+        position: fixed;
+        right: 12px;
+        bottom: 12px;
+        z-index: 20;
+      }
+      .rail-inner {
+        top: auto;
+        width: 184px;
+        max-height: 56vh;
+        margin: 0;
+        overflow: auto;
+      }
+      .grid { grid-template-columns: 1fr; }
+      .full { grid-column: auto; }
+    }
+    @media (max-width: 560px) {
+      .page { width: min(100% - 22px, 1240px); }
+      .rail-inner { width: 160px; padding: 10px 8px; }
+      .rail-title { display: none; }
+      .rail a { padding-block: 7px; font-size: 13px; }
+      dl { grid-template-columns: 1fr; gap: 0; }
+      dd { margin-bottom: 8px; }
+      table, tbody, tr, td { display: block; }
+      thead { display: none; }
+      td { padding: 8px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <main class="content">
+      <header class="hero" id="top">
+        <h1>⚡ 1-7 天超短线动量雷达</h1>
+        <p class="subtitle">右侧跟随节点导航预览｜沿用上一版雷达内容</p>
+        <div class="meta">
+          <span class="pill">生成时间：2026-07-04 11:08 CST</span>
+          <span class="pill">检索窗口：07-03 11:08 — 07-04 11:08 CST</span>
+          <span class="pill">A股：周末休市</span>
+          <span class="pill">美股：独立日补休</span>
+        </div>
+      </header>
+
+      <div class="preview-note">这是独立样式预览；现有网页、定时任务和生成规则均未改动。向下滚动时，右侧节点会自动切换高亮。</div>
+
+      <section id="overview" data-title="总览">
+        <h2>关键动量总览</h2>
+        <div class="grid">
+          <article class="card positive">
+            <h3>杭电股份｜盘后业绩大幅预增</h3>
+            <p>预计上半年归母净利润3.6亿—4亿元，同比增长852%—958%；扣非净利润增长1088%—1221%。</p>
+            <dl><dt>方向</dt><dd class="up">偏多</dd><dt>周期</dt><dd>1—3天</dd><dt>证据</dt><dd>高｜公司正式公告</dd></dl>
+          </article>
+          <article class="card watch">
+            <h3>人形机器人｜资金合力形成</h3>
+            <p>7月3日板块出现四十余只涨停或涨超10%，核心零部件获得机构与北向资金共同买入。</p>
+            <dl><dt>方向</dt><dd class="up">偏多，但已高度一致</dd><dt>周期</dt><dd>1—3天</dd><dt>证据</dt><dd>中高｜行情与龙虎榜</dd></dl>
+          </article>
+          <article class="card negative">
+            <h3>机器人跟风股｜盘后澄清</h3>
+            <p>瑞迪智驱披露谐波减速机业务占营收仅8.44%；多只异动股提示相关业务占比较小。</p>
+            <dl><dt>方向</dt><dd class="down">偏空高位纯概念股</dd><dt>周期</dt><dd>1—3天</dd><dt>证据</dt><dd>高｜异动公告</dd></dl>
+          </article>
+          <article class="card neutral">
+            <h3>美股｜24小时内无新交易信号</h3>
+            <p>NYSE、Nasdaq于7月3日因独立日补休关闭，没有新的盘前成交或完整期权链。</p>
+            <dl><dt>方向</dt><dd>中性</dd><dt>节点</dt><dd>7月6日盘前</dd><dt>证据</dt><dd>高｜休市日历</dd></dl>
+          </article>
+        </div>
+      </section>
+
+      <section id="us" data-title="美股异动">
+        <h2>🔵 美股盘前异动</h2>
+        <article class="card full neutral">
+          <h3>今日无重大超短线动量催化剂</h3>
+          <p>美股7月3日休市，过去24小时没有可由交易量验证的新财报、评级调整或半导体/AI个股突破信号。7月2日数据已超出严格窗口，不升级为新催化。</p>
+          <dl>
+            <dt>短线判断</dt><dd>中性；等待周一盘前报价与成交量</dd>
+            <dt>失真风险</dt><dd>长周末新闻可能导致周一跳空</dd>
+            <dt>权威依据</dt><dd><a href="https://infomemo.theocc.com/infomemos?number=59261" target="_blank" rel="noopener">OCC假日处理通知</a></dd>
+          </dl>
+        </article>
+      </section>
+
+      <section id="cn" data-title="A股雷达">
+        <h2>🔴 A股盘前雷达</h2>
+        <div class="grid">
+          <article class="card positive">
+            <h3>杭电股份／光纤光缆</h3>
+            <p>盘后业绩显著预增，原因指向光纤光缆市场回暖、需求量价齐升及子公司销量增长。</p>
+            <dl>
+              <dt>方向</dt><dd class="up">看多，1—3天</dd>
+              <dt>关键节点</dt><dd>周一竞价封单及光通信联动</dd>
+              <dt>证伪</dt><dd>高开快速回落、板块无跟随成交</dd>
+              <dt>公告</dt><dd><a href="https://www.cfi.net.cn/p20260703001607.html" target="_blank" rel="noopener">业绩预增公告</a></dd>
+            </dl>
+          </article>
+          <article class="card watch">
+            <h3>人形机器人／减速器、轴承、丝杠</h3>
+            <p>长盛轴承获机构净买入约6821万元、深股通净买入约1.02亿元；贝斯特三日龙虎榜合计净买入约8713万元。</p>
+            <dl>
+              <dt>方向</dt><dd class="up">看多但防分化</dd>
+              <dt>关键节点</dt><dd>前排竞价与容量核心承接</dd>
+              <dt>证伪</dt><dd>前排批量走弱、容量核心冲高回落</dd>
+              <dt>资金</dt><dd><a href="https://stcn.com/article/detail/3997402.html" target="_blank" rel="noopener">长盛轴承龙虎榜</a></dd>
+            </dl>
+          </article>
+          <article class="card negative full">
+            <h3>机器人高位映射股／公告降温</h3>
+            <p>盘后多家公司强调机器人相关业务占比较小。情绪高潮后出现基本面澄清，后排与高换手跟风股风险更高。</p>
+            <dl>
+              <dt>方向</dt><dd class="down">看空纯概念跟风，1—3天</dd>
+              <dt>关键节点</dt><dd>周一高开后是否炸板；前排与后排是否强弱分离</dd>
+              <dt>公告</dt><dd><a href="https://finance.jrj.com.cn/2026/07/03205157695694.shtml" target="_blank" rel="noopener">异常波动公告汇总</a></dd>
+            </dl>
+          </article>
+        </div>
+      </section>
+
+      <section id="sentiment" data-title="资金情绪">
+        <h2>📊 资金情绪与市场“阵眼”</h2>
+        <div class="grid">
+          <article class="card neutral">
+            <h3>美股期权／情绪</h3>
+            <p>休市导致过去24小时没有新的完整期权成交。下一有效节点是7月6日盘前指数期货、半导体ETF及高贝塔科技股的量价反馈。</p>
+          </article>
+          <article class="card watch">
+            <h3>A股连板／题材热度</h3>
+            <p>全市场107股涨停、16只连板；非ST及非退市股高度为恒尚节能4板。机器人为明确主线，半导体材料继续补跌。</p>
+            <p class="muted">阵眼：机器人容量核心的承接强度，而非后排涨停数量。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="risks" data-title="风险提示">
+        <h2>风险提示与失效条件</h2>
+        <div class="notice">
+          <ul>
+            <li>机器人前排竞价不及预期、容量核心放量滞涨，将削弱板块延续性。</li>
+            <li>杭电股份若高开回落且光通信无联动，业绩催化可能退化为单股兑现。</li>
+            <li>美股长周末缺乏价格发现；周一跳空需由盘前成交量确认。</li>
+            <li>业绩预告数据未经审计，最终财务数据可能调整。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="sources" data-title="来源">
+        <h2>来源与时间</h2>
+        <table>
+          <thead><tr><th>等级</th><th>来源</th><th>用途</th></tr></thead>
+          <tbody>
+            <tr><td>A｜官方</td><td><a href="https://infomemo.theocc.com/infomemos?number=59261" target="_blank" rel="noopener">OCC假日处理通知</a></td><td>确认7月3日休市</td></tr>
+            <tr><td>A｜公告</td><td><a href="https://www.cfi.net.cn/p20260703001607.html" target="_blank" rel="noopener">杭电股份业绩预增公告</a></td><td>盘后业绩催化</td></tr>
+            <tr><td>B｜财经</td><td><a href="https://finance.sina.com.cn/roll/2026-07-03/doc-inifpkca0407373.shtml" target="_blank" rel="noopener">财联社涨停分析</a></td><td>连板与涨停结构</td></tr>
+            <tr><td>B｜财经</td><td><a href="https://stcn.com/article/detail/3997402.html" target="_blank" rel="noopener">证券时报龙虎榜</a></td><td>机构与深股通资金</td></tr>
+            <tr><td>B｜整理</td><td><a href="https://finance.jrj.com.cn/2026/07/03205157695694.shtml" target="_blank" rel="noopener">异常波动公告汇总</a></td><td>题材降温风险</td></tr>
+          </tbody>
+        </table>
+        <p class="muted">方向、周期与证伪条件属于基于公开信息的短线推断，不构成投资建议。</p>
+      </section>
+
+      <footer>跨境股市 1-7 天超短线盘前雷达 · 右侧跟随导航方案预览</footer>
+    </main>
+
+    <aside class="rail" aria-label="关键节点导航">
+      <div class="rail-inner">
+        <div class="rail-title">关键节点 NAVIGATION</div>
+        <a href="#overview" class="active">总览</a>
+        <a href="#us">美股异动</a>
+        <a href="#cn">A股雷达</a>
+        <a href="#sentiment">资金情绪</a>
+        <a href="#risks">风险提示</a>
+        <a href="#sources">来源</a>
+        <div class="rail-progress" aria-hidden="true"><span></span></div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const sections = [...document.querySelectorAll("main section")];
+    const links = [...document.querySelectorAll(".rail a")];
+    const progress = document.querySelector(".rail-progress span");
+
+    function updateNavigation() {
+      const marker = window.scrollY + Math.min(window.innerHeight * 0.34, 260);
+      let current = sections[0].id;
+      for (const section of sections) {
+        if (section.offsetTop <= marker) current = section.id;
+      }
+      links.forEach(link => {
+        const active = link.getAttribute("href") === `#${current}`;
+        link.classList.toggle("active", active);
+        if (active) link.setAttribute("aria-current", "location");
+        else link.removeAttribute("aria-current");
+      });
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = `${max > 0 ? Math.min(100, window.scrollY / max * 100) : 0}%`;
+    }
+
+    updateNavigation();
+    addEventListener("scroll", updateNavigation, { passive: true });
+    addEventListener("resize", updateNavigation);
+  </script>
+</body>
+</html>

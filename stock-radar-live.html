@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>跨境股市 1-7 天超短线雷达｜2026-07-04</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #09111f;
+      --panel: #111c2e;
+      --panel-2: #17243a;
+      --text: #e8eef8;
+      --muted: #9bacbf;
+      --line: #293a54;
+      --blue: #60a5fa;
+      --red: #fb7185;
+      --green: #34d399;
+      --amber: #fbbf24;
+      --shadow: 0 14px 36px rgba(0, 0, 0, .25);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      font: 15px/1.65 system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(circle at top right, #142748 0, var(--bg) 40%);
+      color: var(--text);
+    }
+    a { color: #93c5fd; }
+    .wrap { width: min(1120px, calc(100% - 28px)); margin: auto; }
+    header { padding: 42px 0 22px; }
+    h1 { margin: 0 0 8px; font-size: clamp(26px, 5vw, 42px); line-height: 1.15; }
+    h2 { margin: 0 0 18px; font-size: 24px; }
+    h3 { margin: 0 0 8px; font-size: 18px; }
+    p { margin: 7px 0; }
+    .subtitle, .muted { color: var(--muted); }
+    .meta { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 18px; }
+    .pill, .tag {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 10px;
+      background: rgba(17, 28, 46, .78);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-block: 1px solid var(--line);
+      background: rgba(9, 17, 31, .92);
+      backdrop-filter: blur(14px);
+    }
+    nav .wrap { display: flex; gap: 8px; overflow-x: auto; padding-block: 10px; }
+    nav a {
+      flex: 0 0 auto;
+      padding: 7px 12px;
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      background: var(--panel);
+    }
+    nav a:hover { background: var(--panel-2); color: white; }
+    main { padding: 26px 0 60px; }
+    section { margin: 0 0 26px; }
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+    .card {
+      grid-column: span 6;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(23,36,58,.95), rgba(17,28,46,.95));
+      box-shadow: var(--shadow);
+    }
+    .card.full { grid-column: 1 / -1; }
+    .signal { border-left: 4px solid var(--green); }
+    .risk { border-left: 4px solid var(--red); }
+    .neutral { border-left: 4px solid var(--blue); }
+    .watch { border-left: 4px solid var(--amber); }
+    .up { color: var(--green); }
+    .down { color: var(--red); }
+    .caution { color: var(--amber); }
+    dl { display: grid; grid-template-columns: 92px 1fr; gap: 5px 12px; margin: 14px 0 0; }
+    dt { color: var(--muted); }
+    dd { margin: 0; }
+    .back { display: block; margin-top: 13px; text-align: right; font-size: 13px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 11px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; }
+    .notice {
+      padding: 14px 16px;
+      border: 1px solid #6b531b;
+      border-radius: 12px;
+      background: rgba(251, 191, 36, .08);
+    }
+    footer { padding: 20px 0 42px; color: var(--muted); border-top: 1px solid var(--line); }
+    @media (max-width: 760px) {
+      .card { grid-column: 1 / -1; }
+      dl { grid-template-columns: 1fr; gap: 0; }
+      dd { margin-bottom: 8px; }
+      table, tbody, tr, td { display: block; }
+      thead { display: none; }
+      td { padding: 8px 0; }
+    }
+  </style>
+</head>
+<body id="top">
+  <header class="wrap">
+    <h1>⚡ 1-7 天超短线动量雷达</h1>
+    <p class="subtitle">周末即时版｜只看预期差、资金合力与下一交易日可验证节点</p>
+    <div class="meta">
+      <span class="pill">生成时间：2026-07-04 11:08 CST</span>
+      <span class="pill">检索窗口：07-03 11:08 — 07-04 11:08 CST</span>
+      <span class="pill">A股：周末休市</span>
+      <span class="pill">美股：独立日补休</span>
+    </div>
+  </header>
+
+  <nav aria-label="关键节点导航">
+    <div class="wrap">
+      <a href="#overview">总览</a>
+      <a href="#us">美股异动</a>
+      <a href="#cn">A股雷达</a>
+      <a href="#sentiment">资金情绪</a>
+      <a href="#risks">风险提示</a>
+      <a href="#sources">来源</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="overview">
+      <h2>关键动量总览</h2>
+      <div class="grid">
+        <article class="card signal">
+          <h3>杭电股份｜盘后业绩大幅预增</h3>
+          <p>预计上半年归母净利润 3.6亿—4亿元，同比增长 852%—958%；扣非净利润增长 1088%—1221%。</p>
+          <dl>
+            <dt>方向</dt><dd class="up">偏多</dd>
+            <dt>影响周期</dt><dd>1—3天</dd>
+            <dt>证据强度</dt><dd>高｜公司正式公告</dd>
+          </dl>
+        </article>
+        <article class="card watch">
+          <h3>人形机器人｜资金合力已形成</h3>
+          <p>7月3日板块出现四十余只涨停或涨超10%，机器人核心零部件获得机构与北向资金共同买入。</p>
+          <dl>
+            <dt>方向</dt><dd class="up">偏多，但已高度一致</dd>
+            <dt>影响周期</dt><dd>1—3天</dd>
+            <dt>证据强度</dt><dd>中高｜行情与龙虎榜</dd>
+          </dl>
+        </article>
+        <article class="card risk">
+          <h3>机器人跟风股｜盘后澄清压制估值映射</h3>
+          <p>瑞迪智驱披露谐波减速机业务占营收仅8.44%；多只异动股提示相关业务占比较小或经营未发生重大变化。</p>
+          <dl>
+            <dt>方向</dt><dd class="down">偏空高位纯概念股</dd>
+            <dt>影响周期</dt><dd>1—3天</dd>
+            <dt>证据强度</dt><dd>高｜上市公司异动公告</dd>
+          </dl>
+        </article>
+        <article class="card neutral">
+          <h3>美股｜24小时内无新交易信号</h3>
+          <p>NYSE、Nasdaq 于7月3日因独立日补休关闭，当前没有新的盘前成交、完整期权链或机构评级异动可供确认。</p>
+          <dl>
+            <dt>方向</dt><dd>中性</dd>
+            <dt>观察窗口</dt><dd>7月6日盘前</dd>
+            <dt>证据强度</dt><dd>高｜休市日历</dd>
+          </dl>
+        </article>
+      </div>
+      <a class="back" href="#top">↑ 返回顶部</a>
+    </section>
+
+    <section id="us">
+      <h2>🔵 美股盘前异动</h2>
+      <div class="card full neutral">
+        <h3>今日无重大超短线动量催化剂</h3>
+        <p>美股7月3日休市，过去24小时没有可由交易量验证的新财报、评级调整或半导体/AI个股突破信号。7月2日的期权与价格数据已超出本次严格窗口，仅作为下一交易日的背景，不升级为新催化。</p>
+        <dl>
+          <dt>短线判断</dt><dd>中性；等待周一盘前报价与成交量</dd>
+          <dt>失真风险</dt><dd>长周末新闻可能导致周一跳空，当前静态数据无法定价</dd>
+          <dt>权威依据</dt><dd><a href="https://infomemo.theocc.com/infomemos?number=59261" target="_blank" rel="noopener">OCC 假日处理通知</a></dd>
+        </dl>
+      </div>
+      <a class="back" href="#top">↑ 返回顶部</a>
+    </section>
+
+    <section id="cn">
+      <h2>🔴 A股盘前雷达</h2>
+      <div class="grid">
+        <article class="card signal">
+          <h3>杭电股份／光纤光缆</h3>
+          <p>盘后发布半年度业绩预增公告，利润增幅显著，原因指向光纤光缆市场回暖、产品需求量价齐升及子公司销量增长。</p>
+          <dl>
+            <dt>短线方向</dt><dd class="up">看多，1—3天</dd>
+            <dt>关键节点</dt><dd>周一竞价封单强度；是否带动光纤、光通信低位补涨</dd>
+            <dt>证伪条件</dt><dd>高开快速回落，或板块无跟随成交</dd>
+            <dt>公告</dt><dd><a href="https://www.cfi.net.cn/p20260703001607.html" target="_blank" rel="noopener">2026年半年度业绩预增公告</a></dd>
+          </dl>
+        </article>
+        <article class="card watch">
+          <h3>人形机器人／减速器、轴承、丝杠</h3>
+          <p>板块在7月3日形成涨停潮。长盛轴承获机构净买入约6821万元、深股通净买入约1.02亿元；贝斯特三日龙虎榜合计净买入约8713万元。</p>
+          <dl>
+            <dt>短线方向</dt><dd class="up">看多但防分化，1—3天</dd>
+            <dt>关键节点</dt><dd>埃斯顿、雷赛智能等前排竞价；绿的谐波、三花智控等容量核心能否放量承接</dd>
+            <dt>证伪条件</dt><dd>前排批量低于预期、容量核心冲高回落</dd>
+            <dt>资金出处</dt><dd><a href="https://stcn.com/article/detail/3997402.html" target="_blank" rel="noopener">长盛轴承龙虎榜</a></dd>
+          </dl>
+        </article>
+        <article class="card risk">
+          <h3>机器人高位映射股／公告降温</h3>
+          <p>盘后多家公司发布异动公告，强调机器人相关业务占比较小。情绪高潮后出现基本面澄清，最容易影响后排与高换手跟风股。</p>
+          <dl>
+            <dt>短线方向</dt><dd class="down">看空纯概念跟风，1—3天</dd>
+            <dt>关键节点</dt><dd>周一大幅高开后是否出现炸板；前排与后排强弱分离</dd>
+            <dt>证伪条件</dt><dd>澄清股仍获大额封单且板块成交继续扩张</dd>
+            <dt>公告汇总</dt><dd><a href="https://finance.jrj.com.cn/2026/07/03205157695694.shtml" target="_blank" rel="noopener">7月3日异常波动公告</a></dd>
+          </dl>
+        </article>
+      </div>
+      <a class="back" href="#top">↑ 返回顶部</a>
+    </section>
+
+    <section id="sentiment">
+      <h2>📊 资金情绪与市场“阵眼”</h2>
+      <div class="grid">
+        <article class="card neutral">
+          <h3>美股期权／情绪</h3>
+          <p>休市导致过去24小时没有新的完整期权成交。最新可见数据仍属于7月2日，因此不作为本次即时信号。下一有效节点是7月6日盘前指数期货、半导体ETF及高贝塔科技股的量价反馈。</p>
+        </article>
+        <article class="card watch">
+          <h3>A股连板／题材热度</h3>
+          <p>7月3日全市场107股涨停、16只连板，非ST及非退市股高度为恒尚节能4板；宜宾纸业、富春染织3板，埃斯顿与星网锐捷均为4天3板。机器人是明确主线，半导体材料方向则继续补跌。</p>
+          <p class="muted">阵眼：机器人容量核心的承接强度，而不是后排涨停数量。</p>
+        </article>
+      </div>
+      <a class="back" href="#top">↑ 返回顶部</a>
+    </section>
+
+    <section id="risks">
+      <h2>风险提示与失效条件</h2>
+      <div class="notice">
+        <ul>
+          <li>机器人前排竞价不及预期、容量核心放量滞涨，将削弱板块延续性。</li>
+          <li>杭电股份若高开回落且光通信板块无联动，业绩催化可能退化为单股兑现。</li>
+          <li>美股长周末缺乏价格发现；周一跳空方向需由盘前成交量确认，不宜用7月2日数据替代。</li>
+          <li>公告中的预告数据未经审计；最终财务数据可能调整。</li>
+        </ul>
+      </div>
+      <a class="back" href="#top">↑ 返回顶部</a>
+    </section>
+
+    <section id="sources">
+      <h2>来源与时间</h2>
+      <table>
+        <thead><tr><th>等级</th><th>来源</th><th>发布时间／用途</th></tr></thead>
+        <tbody>
+          <tr><td>A｜官方</td><td><a href="https://infomemo.theocc.com/infomemos?number=59261" target="_blank" rel="noopener">OCC：Holiday Processing July 2nd &amp; 3rd</a></td><td>2026-06-30｜确认7月3日期权市场休市</td></tr>
+          <tr><td>A｜公司公告</td><td><a href="https://www.cfi.net.cn/p20260703001607.html" target="_blank" rel="noopener">杭电股份半年度业绩预增公告全文</a></td><td>2026-07-03 18:15｜盘后业绩催化</td></tr>
+          <tr><td>B｜权威财经</td><td><a href="https://finance.sina.com.cn/roll/2026-07-03/doc-inifpkca0407373.shtml" target="_blank" rel="noopener">财联社：7月3日涨停分析</a></td><td>2026-07-03 15:14｜连板高度与涨停结构</td></tr>
+          <tr><td>B｜权威财经</td><td><a href="https://stcn.com/article/detail/3997402.html" target="_blank" rel="noopener">证券时报：长盛轴承龙虎榜</a></td><td>2026-07-03｜机构与深股通资金</td></tr>
+          <tr><td>B｜公告整理</td><td><a href="https://finance.jrj.com.cn/2026/07/03205157695694.shtml" target="_blank" rel="noopener">7月3日异常波动公告汇总</a></td><td>2026-07-03 20:51｜机器人题材降温风险</td></tr>
+          <tr><td>B｜行情报道</td><td><a href="https://finance.sina.com.cn/roll/2026-07-03/doc-inifqfhs0273190.shtml" target="_blank" rel="noopener">财联社：机器人产业链全线爆发</a></td><td>2026-07-03 16:54｜题材扩散与容量核心</td></tr>
+        </tbody>
+      </table>
+      <p class="muted">事实来自上述链接；“方向、周期、证伪条件”为基于公开信息的短线推断，不构成投资建议。</p>
+      <a class="back" href="#top">↑ 返回顶部</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">跨境股市 1-7 天超短线盘前雷达 · 仅保留可验证的即时催化</div>
+  </footer>
+</body>
+</html>
