@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>跨境股市 1-7 天超短线雷达｜2026-07-06</title>
+  <title>跨境股市 1-7 天超短线雷达｜2026-07-06 美股盘前补发版</title>
   <style>
     :root {
       color-scheme: dark;
@@ -21,7 +21,7 @@
       --shadow: 0 14px 36px rgba(0, 0, 0, .25);
     }
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    html { scroll-behavior: smooth; scroll-padding-top: 22px; }
     body {
       margin: 0;
       font: 15px/1.65 system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
@@ -29,8 +29,9 @@
       color: var(--text);
     }
     a { color: #93c5fd; }
-    .wrap { width: min(1120px, calc(100% - 28px)); margin: auto; }
+    .layout { width: min(1180px, calc(100% - 28px)); margin: auto; display: grid; grid-template-columns: 1fr 210px; gap: 22px; }
     header { padding: 42px 0 22px; }
+    header .layout { display: block; }
     h1 { margin: 0 0 8px; font-size: clamp(26px, 5vw, 42px); line-height: 1.15; }
     h2 { margin: 0 0 18px; font-size: 24px; }
     h3 { margin: 0 0 8px; font-size: 18px; }
@@ -47,25 +48,30 @@
       color: var(--muted);
       font-size: 13px;
     }
-    nav {
+    main { padding: 16px 0 60px; }
+    .content { min-width: 0; }
+    aside {
       position: sticky;
-      top: 0;
-      z-index: 10;
-      border-block: 1px solid var(--line);
-      background: rgba(9, 17, 31, .92);
+      top: 18px;
+      align-self: start;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(9, 17, 31, .72);
       backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      padding: 14px;
     }
-    nav .wrap { display: flex; gap: 8px; overflow-x: auto; padding-block: 10px; }
-    nav a {
-      flex: 0 0 auto;
-      padding: 7px 12px;
-      border-radius: 8px;
+    aside strong { display: block; margin-bottom: 8px; color: white; }
+    aside a {
+      display: block;
+      padding: 8px 10px;
+      margin: 5px 0;
+      border-radius: 10px;
       color: var(--text);
       text-decoration: none;
-      background: var(--panel);
+      background: rgba(17, 28, 46, .82);
     }
-    nav a:hover { background: var(--panel-2); color: white; }
-    main { padding: 26px 0 60px; }
+    aside a:hover { background: var(--panel-2); color: white; }
     section { margin: 0 0 26px; }
     .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
     .card {
@@ -84,7 +90,7 @@
     .up { color: var(--green); }
     .down { color: var(--red); }
     .caution { color: var(--amber); }
-    dl { display: grid; grid-template-columns: 92px 1fr; gap: 5px 12px; margin: 14px 0 0; }
+    dl { display: grid; grid-template-columns: 96px 1fr; gap: 5px 12px; margin: 14px 0 0; }
     dt { color: var(--muted); }
     dd { margin: 0; }
     .back { display: block; margin-top: 13px; text-align: right; font-size: 13px; }
@@ -98,6 +104,11 @@
       background: rgba(251, 191, 36, .08);
     }
     footer { padding: 20px 0 42px; color: var(--muted); border-top: 1px solid var(--line); }
+    @media (max-width: 920px) {
+      .layout { display: block; }
+      aside { position: static; margin-bottom: 18px; }
+      aside a { display: inline-block; margin-right: 6px; }
+    }
     @media (max-width: 760px) {
       .card { grid-column: 1 / -1; }
       dl { grid-template-columns: 1fr; gap: 0; }
@@ -109,172 +120,202 @@
   </style>
 </head>
 <body id="top">
-  <header class="wrap">
-    <h1>⚡ 1-7 天超短线动量雷达</h1>
-    <p class="subtitle">A股盘前提前版｜只看预期差、资金合力与今日可验证节点</p>
-    <div class="meta">
-      <span class="pill">生成时间：2026-07-06 08:05 CST</span>
-      <span class="pill">检索窗口：07-05 08:05 — 07-06 08:05 CST</span>
-      <span class="pill">A股：今日交易</span>
-      <span class="pill">美股：今晚恢复交易</span>
+  <header>
+    <div class="layout">
+      <h1>⚡ 1-7 天超短线动量雷达</h1>
+      <p class="subtitle">美股盘前补发版｜只看过去 24 小时可验证催化剂、预期差与资金合力</p>
+      <div class="meta">
+        <span class="pill">生成时间：2026-07-06 20:41 CST</span>
+        <span class="pill">检索窗口：07-05 20:41 — 07-06 20:41 CST</span>
+        <span class="pill">美股：今日交易</span>
+        <span class="pill">A股：今日已收盘，盘后仅保留可验证催化</span>
+      </div>
     </div>
   </header>
 
-  <nav aria-label="关键节点导航">
-    <div class="wrap">
-      <a href="#overview">总览</a>
-      <a href="#us">美股异动</a>
-      <a href="#cn">A股雷达</a>
-      <a href="#sentiment">资金情绪</a>
-      <a href="#risks">风险提示</a>
-      <a href="#sources">来源</a>
+  <main class="layout">
+    <div class="content">
+      <section id="overview">
+        <h2>关键动量总览</h2>
+        <div class="grid">
+          <article class="card signal">
+            <h3>存储/半导体：MU、SNDK、WDC、INTC 盘前走强</h3>
+            <p>美股盘前最清晰的短线合力集中在存储与半导体。IBD、MarketWatch 同步提到 Micron、SanDisk、Western Digital、Intel 盘前上涨，驱动来自 NAND/DRAM 价格预期修复与华尔街对 Micron 下跌后的再定价。</p>
+            <dl>
+              <dt>方向</dt><dd class="up">看多，重点看 1-3 天延续性</dd>
+              <dt>观察节点</dt><dd>MU 是否带动 SNDK/WDC/INTC 同步放量；SOXX 能否跟随</dd>
+              <dt>失效条件</dt><dd>开盘后高开低走，或半导体 ETF 明显弱于 Nasdaq</dd>
+            </dl>
+          </article>
+          <article class="card watch">
+            <h3>银行评级分化：USB/HBAN/CFR 出现单股预期差</h3>
+            <p>MarketWatch 盘前汇总显示，U.S. Bancorp 获 Evercore ISI 上调、Huntington Bancshares 被下调、Cullen/Frost 获上调。银行方向不是板块共振，更偏事件驱动单股交易。</p>
+            <dl>
+              <dt>方向</dt><dd class="caution">分化交易，1-3 天</dd>
+              <dt>观察节点</dt><dd>评级股开盘前后是否放量；KRE 是否确认板块跟随</dd>
+              <dt>失效条件</dt><dd>评级股单独冲高回落，区域银行 ETF 不配合</dd>
+            </dl>
+          </article>
+          <article class="card risk">
+            <h3>油气链：OPEC+ 继续增产压制油价弹性</h3>
+            <p>OPEC+ 同意 8 月继续增产，短线对原油价格和传统能源股弹性形成压制。该线索更适合观察油服、E&P 的反弹失败，而不是追涨。</p>
+            <dl>
+              <dt>方向</dt><dd class="down">能源股偏空/反弹受限，1-3 天</dd>
+              <dt>观察节点</dt><dd>WTI 能否守住盘前低位；XLE、OIH 是否弱于大盘</dd>
+              <dt>失效条件</dt><dd>油价无视增产消息反弹并带动能源 ETF 放量</dd>
+            </dl>
+          </article>
+          <article class="card watch">
+            <h3>MSTR/加密映射：跟随比特币情绪，波动大于基本面</h3>
+            <p>WSJ 盘前观察名单提到 Strategy（MSTR）。该标的短线更受比特币价格、期权情绪和散户风险偏好影响，适合作为情绪温度计，不宜当作基本面主线。</p>
+            <dl>
+              <dt>方向</dt><dd class="caution">高波动观察，1-3 天</dd>
+              <dt>观察节点</dt><dd>BTC 日内方向、MSTR 盘前量价、相关期权成交</dd>
+              <dt>失效条件</dt><dd>BTC 走弱且 MSTR 开盘后放量下破盘前区间</dd>
+            </dl>
+          </article>
+        </div>
+        <a class="back" href="#top">↑ 返回顶部</a>
+      </section>
+
+      <section id="us">
+        <h2>🔵 美股盘前异动（Premarket Focus）</h2>
+        <div class="grid">
+          <article class="card signal">
+            <h3>Micron / SanDisk / Western Digital / Intel</h3>
+            <p>盘前媒体同步指向存储与半导体走强：Micron 获 UBS 观点支撑，SanDisk 与 Western Digital 受 NAND 价格预期带动，Intel 同属半导体弹性标的。</p>
+            <dl>
+              <dt>催化剂</dt><dd>存储价格预期修复 + 华尔街对 MU 回调后的买点评估</dd>
+              <dt>短线判断</dt><dd class="up">看多，预计影响 1-3 天；若 SOXX 放量确认可延长至 3-7 天</dd>
+              <dt>原文链接</dt><dd><a href="https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-nasdaq-today-nvidia-stock-amd-stock-tesla-stock/" target="_blank" rel="noopener">Investor's Business Daily 盘前</a>；<a href="https://www.marketwatch.com/livecoverage/stock-market-today-dow-futures-sp500-nasdaq-07-06-2026" target="_blank" rel="noopener">MarketWatch 盘前直播</a></dd>
+            </dl>
+          </article>
+          <article class="card watch">
+            <h3>U.S. Bancorp / Huntington Bancshares / Cullen/Frost</h3>
+            <p>银行股出现评级驱动的多空分化：USB 被上调，HBAN 被下调，CFR 被上调。该类信号短线更依赖开盘成交验证。</p>
+            <dl>
+              <dt>催化剂</dt><dd>Evercore ISI / Wedbush 等机构评级调整</dd>
+              <dt>短线判断</dt><dd class="caution">单股看多/看空分化，预计影响 1-3 天</dd>
+              <dt>原文链接</dt><dd><a href="https://www.marketwatch.com/livecoverage/stock-market-today-dow-futures-sp500-nasdaq-07-06-2026" target="_blank" rel="noopener">MarketWatch 盘前评级汇总</a></dd>
+            </dl>
+          </article>
+          <article class="card risk">
+            <h3>能源股 / 原油链</h3>
+            <p>OPEC+ 增产使原油链短线资金更容易选择兑现，而不是扩张估值。对 XLE、OIH 和高贝塔油气股偏压制。</p>
+            <dl>
+              <dt>催化剂</dt><dd>OPEC+ 同意 8 月继续增产</dd>
+              <dt>短线判断</dt><dd class="down">看空/反弹受限，预计影响 1-3 天</dd>
+              <dt>原文链接</dt><dd><a href="https://www.investopedia.com/5-things-to-know-before-the-stock-market-opens-monday-july-6-2026-12012247" target="_blank" rel="noopener">Investopedia 盘前五件事</a></dd>
+            </dl>
+          </article>
+          <article class="card watch">
+            <h3>Strategy（MSTR）/ 加密映射</h3>
+            <p>MSTR 被列入盘前观察名单。该方向不属于财报或评级硬催化，主要看加密资产情绪与期权链共振。</p>
+            <dl>
+              <dt>催化剂</dt><dd>加密资产风险偏好与盘前观察名单</dd>
+              <dt>短线判断</dt><dd class="caution">波动观察，1-3 天；需量价确认</dd>
+              <dt>原文链接</dt><dd><a href="https://www.wsj.com/livecoverage/stock-market-today-dow-sp500-nasdaq-07-06-2026" target="_blank" rel="noopener">WSJ 盘前观察</a></dd>
+            </dl>
+          </article>
+        </div>
+        <a class="back" href="#top">↑ 返回顶部</a>
+      </section>
+
+      <section id="cn">
+        <h2>🔴 A股盘后雷达（A-Share Focus）</h2>
+        <div class="grid">
+          <article class="card watch">
+            <h3>交易新规实施后：波动率线索仍在，但不追空泛制度题材</h3>
+            <p>今日 A 股交易新规已实施，盘后固定价格交易扩展至全部 A 股与 ETF，主板风险警示股涨跌幅扩至 10%。短线关注点从“消息本身”转为实际成交与板块承接。</p>
+            <dl>
+              <dt>短线方向</dt><dd class="caution">中性偏波动，重点看次日竞价与成交结构</dd>
+              <dt>关注对象</dt><dd>ST板块、券商IT、交易系统与高换手标的</dd>
+              <dt>相关链接</dt><dd><a href="https://big5.sse.com.cn/site/cht/www.sse.com.cn/lawandrules/sselawsrules2025/trade/universal/c/c_20260424_10816492.shtml" target="_blank" rel="noopener">上交所交易规则</a></dd>
+            </dl>
+          </article>
+          <article class="card signal">
+            <h3>存储/功率半导体：A股与美股形成同主题映射</h3>
+            <p>A股早间存储、功率半导体线索来自涨价和业绩预增；晚间美股盘前 MU/SNDK/WDC 走强，形成跨市场情绪映射。次日 A 股重点看是否出现强度回流。</p>
+            <dl>
+              <dt>短线方向</dt><dd class="up">偏多，重点关注次日竞价强度</dd>
+              <dt>关注对象</dt><dd>江波龙、中电港、士兰微，以及国产存储/功率链弹性股</dd>
+              <dt>相关链接</dt><dd><a href="https://news.10jqka.com.cn/20260705/c677956743.shtml" target="_blank" rel="noopener">券商中国/同花顺：存储涨价预期</a></dd>
+            </dl>
+          </article>
+          <article class="card risk">
+            <h3>高位半导体解禁压力</h3>
+            <p>屹唐股份、天承科技本周大比例限售股上市仍是高位半导体个股的供给压力。该风险与产业趋势并存，短线不宜混为一谈。</p>
+            <dl>
+              <dt>短线方向</dt><dd class="down">个股偏空，1-3 天</dd>
+              <dt>关注对象</dt><dd>屹唐股份、天承科技及高位次新半导体承接</dd>
+              <dt>相关链接</dt><dd><a href="https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?CompanyCode=82643823&amp;gather=1&amp;id=12424520" target="_blank" rel="noopener">屹唐股份风险提示公告</a></dd>
+            </dl>
+          </article>
+        </div>
+        <a class="back" href="#top">↑ 返回顶部</a>
+      </section>
+
+      <section id="sentiment">
+        <h2>📊 资金情绪与市场“阵眼”</h2>
+        <div class="grid">
+          <article class="card signal">
+            <h3>美股期权/情绪异动</h3>
+            <p>本次补发窗口内，可核验的异常更集中在盘前量价而非完整期权链。阵眼暂定为半导体/存储：若 MU、SNDK、WDC 开盘后放量并带动 SOXX，资金合力才算成立。</p>
+            <p class="muted">MSTR 是情绪温度计，波动可能很大，但需 BTC 与期权成交同步确认。</p>
+          </article>
+          <article class="card watch">
+            <h3>A股连板/题材热度</h3>
+            <p>今晚未检索到足够权威、可交叉验证的最新连板高度数据，因此不硬填高度。可验证主线仍是：交易制度切换带来的波动率观察，以及存储/功率半导体的跨市场映射。</p>
+            <p class="muted">次日关键：竞价是否直接给出存储链强度，而不是只做消息一字化。</p>
+          </article>
+        </div>
+        <a class="back" href="#top">↑ 返回顶部</a>
+      </section>
+
+      <section id="risks">
+        <h2>风险提示与失效条件</h2>
+        <div class="notice">
+          <ul>
+            <li>半导体/存储若仅个别股盘前上涨，开盘后 SOXX 不跟随，则主线强度降级。</li>
+            <li>银行评级分化不是板块级利好，必须看 KRE 与被评级个股的实际成交确认。</li>
+            <li>OPEC+ 增产对油气链是短线压制，但若油价反向走强，能源股空头判断失效。</li>
+            <li>A股盘后未发现新的重大政策文件；存储链若次日高开低走，跨市场映射快速失效。</li>
+          </ul>
+        </div>
+        <a class="back" href="#top">↑ 返回顶部</a>
+      </section>
+
+      <section id="sources">
+        <h2>来源与时间</h2>
+        <table>
+          <thead><tr><th>等级</th><th>来源</th><th>用途</th></tr></thead>
+          <tbody>
+            <tr><td>B｜权威财经</td><td><a href="https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-nasdaq-today-nvidia-stock-amd-stock-tesla-stock/" target="_blank" rel="noopener">Investor's Business Daily：Dow Jones Futures / Nasdaq Today</a></td><td>美股盘前半导体、存储异动核验</td></tr>
+            <tr><td>B｜权威财经</td><td><a href="https://www.marketwatch.com/livecoverage/stock-market-today-dow-futures-sp500-nasdaq-07-06-2026" target="_blank" rel="noopener">MarketWatch：Stock Market Today Live</a></td><td>盘前涨跌、银行评级调整、MU/INTC/SNDK/WDC 核验</td></tr>
+            <tr><td>B｜权威财经</td><td><a href="https://www.investopedia.com/5-things-to-know-before-the-stock-market-opens-monday-july-6-2026-12012247" target="_blank" rel="noopener">Investopedia：5 Things to Know Before the Stock Market Opens</a></td><td>美股交易日背景、OPEC+ 增产、盘前风险线索</td></tr>
+            <tr><td>B｜权威财经</td><td><a href="https://www.wsj.com/livecoverage/stock-market-today-dow-sp500-nasdaq-07-06-2026" target="_blank" rel="noopener">Wall Street Journal：Stocks to Watch</a></td><td>MSTR、半导体盘前观察名单</td></tr>
+            <tr><td>A｜官方</td><td><a href="https://big5.sse.com.cn/site/cht/www.sse.com.cn/lawandrules/sselawsrules2025/trade/universal/c/c_20260424_10816492.shtml" target="_blank" rel="noopener">上交所交易规则（2026年修订）</a></td><td>A股交易制度切换</td></tr>
+            <tr><td>B｜财经媒体</td><td><a href="https://news.10jqka.com.cn/20260705/c677956743.shtml" target="_blank" rel="noopener">同花顺/券商中国：一周市场消息</a></td><td>A股存储涨价与交易新规补充核验</td></tr>
+          </tbody>
+        </table>
+        <p class="muted">事实来自上述链接；“方向、周期、失效条件”为基于公开信息的 1-7 天短线推断，不构成投资建议。</p>
+        <a class="back" href="#top">↑ 返回顶部</a>
+      </section>
     </div>
-  </nav>
 
-  <main class="wrap">
-    <section id="overview">
-      <h2>关键动量总览</h2>
-      <div class="grid">
-        <article class="card watch">
-          <h3>A股交易新规｜今日正式实施</h3>
-          <p>盘后固定价格交易扩展至全部A股及ETF；主板ST、*ST涨跌幅由5%提高至10%，创业板引入做市商制度。</p>
-          <dl>
-            <dt>方向</dt><dd class="caution">波动率上升，非单边利好</dd>
-            <dt>影响周期</dt><dd>1—3天</dd>
-            <dt>关键验证</dt><dd>ST竞价、券商IT与盘后成交量</dd>
-          </dl>
-        </article>
-        <article class="card signal">
-          <h3>存储／功率半导体｜涨价与业绩共振</h3>
-          <p>国内企业披露15%—25%调价，存储价格预期上修；江波龙、中电港等中报业绩预增强化产业景气映射。</p>
-          <dl>
-            <dt>方向</dt><dd class="up">偏多，但防高开兑现</dd>
-            <dt>影响周期</dt><dd>1—3天</dd>
-            <dt>关键验证</dt><dd>江波龙、中电港、士兰微竞价联动</dd>
-          </dl>
-        </article>
-        <article class="card signal">
-          <h3>再融资规则｜小额快速融资上限提高</h3>
-          <p>证监会征求意见：沪深上市公司小额快速融资上限由3亿元提高至6亿元，特大型企业可至10亿元，并引入储架发行。</p>
-          <dl>
-            <dt>方向</dt><dd class="up">偏多规范成长与券商投行</dd>
-            <dt>影响周期</dt><dd>3—7天</dd>
-            <dt>限制</dt><dd>仍处征求意见阶段</dd>
-          </dl>
-        </article>
-        <article class="card risk">
-          <h3>高位半导体股｜大额解禁临近</h3>
-          <p>屹唐股份7月8日解禁15.33亿股、占总股本51.88%；天承科技7月10日解禁约7730万股、占61.98%。</p>
-          <dl>
-            <dt>方向</dt><dd class="down">个股偏空，压制高位映射</dd>
-            <dt>影响周期</dt><dd>1—7天</dd>
-            <dt>关键验证</dt><dd>竞价承接与放量滞涨</dd>
-          </dl>
-        </article>
-      </div>
-      <a class="back" href="#top">↑ 返回顶部</a>
-    </section>
-
-    <section id="us">
-      <h2>🔵 美股盘前异动</h2>
-      <div class="card full neutral">
-        <h3>今日无重大超短线动量催化剂</h3>
-        <p>过去24小时没有可由交易量验证的新财报、评级调整或AI/半导体突破信号。美股今晚恢复交易，周末文章多为7月2日行情复盘，不升级为新催化。</p>
-        <dl>
-          <dt>短线判断</dt><dd>中性；等待今晚盘前价格发现</dd>
-          <dt>观察阵眼</dt><dd>SOXX、MU、SNDK能否止跌；META强势能否扩散至AI软件</dd>
-          <dt>数据限制</dt><dd>严格窗口内无新期权链与盘前成交</dd>
-        </dl>
-      </div>
-      <a class="back" href="#top">↑ 返回顶部</a>
-    </section>
-
-    <section id="cn">
-      <h2>🔴 A股盘前雷达</h2>
-      <div class="grid">
-        <article class="card watch">
-          <h3>交易制度切换／ST与券商IT</h3>
-          <p>今日起全部A股与ETF覆盖盘后固定价格交易；主板风险警示股涨跌幅扩大至10%。制度切换首先影响高换手、风险警示及交易系统相关标的。</p>
-          <dl>
-            <dt>短线方向</dt><dd class="caution">看波动，不追一致性高开</dd>
-            <dt>关键节点</dt><dd>ST板块涨跌停家数、券商IT成交额</dd>
-            <dt>证伪条件</dt><dd>制度题材无量，开盘半小时快速退潮</dd>
-            <dt>官方规则</dt><dd><a href="https://big5.sse.com.cn/site/cht/www.sse.com.cn/lawandrules/sselawsrules2025/trade/universal/c/c_20260424_10816492.shtml" target="_blank" rel="noopener">上交所交易规则（2026年修订）</a></dd>
-          </dl>
-        </article>
-        <article class="card signal">
-          <h3>存储芯片／功率半导体</h3>
-          <p>芯联集成拟涨价15%—25%，士兰微涨价15%起，华润微披露产能与订单饱和；存储企业中报大幅预增形成业绩验证。</p>
-          <dl>
-            <dt>短线方向</dt><dd class="up">偏多，1—3天</dd>
-            <dt>关键节点</dt><dd>江波龙、中电港、士兰微能否形成量价合力</dd>
-            <dt>证伪条件</dt><dd>前排高开低走、板块成交未扩张</dd>
-            <dt>周末汇总</dt><dd><a href="https://news.10jqka.com.cn/20260705/c677956743.shtml" target="_blank" rel="noopener">交易新规与存储涨价预期</a></dd>
-          </dl>
-        </article>
-        <article class="card risk">
-          <h3>屹唐股份／天承科技解禁压力</h3>
-          <p>两只高位半导体股本周分别迎来占总股本51.88%和61.98%的限售股上市流通，短线供给压力明确。</p>
-          <dl>
-            <dt>短线方向</dt><dd class="down">个股偏空，1—7天</dd>
-            <dt>关键节点</dt><dd>屹唐股份7月8日前承接；天承科技7月10日前换手</dd>
-            <dt>证伪条件</dt><dd>大额成交承接且收盘不破关键均线</dd>
-            <dt>公告摘要</dt><dd><a href="https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?CompanyCode=82643823&amp;gather=1&amp;id=12424520" target="_blank" rel="noopener">屹唐股份风险提示公告</a></dd>
-          </dl>
-        </article>
-      </div>
-      <a class="back" href="#top">↑ 返回顶部</a>
-    </section>
-
-    <section id="sentiment">
-      <h2>📊 资金情绪与市场“阵眼”</h2>
-      <div class="grid">
-        <article class="card neutral">
-          <h3>美股期权／情绪</h3>
-          <p>过去24小时没有新的完整期权成交。今晚首先观察半导体ETF与存储龙头是否继续补跌；没有盘前量价确认前，不把周末扩产新闻直接等同于股价利好。</p>
-        </article>
-        <article class="card watch">
-          <h3>A股连板／题材热度</h3>
-          <p>最新有效收盘口径仍为7月3日：非ST高度4板，机器人是存量主线；今日增量观察点转向半导体涨价与交易制度切换。</p>
-          <p class="muted">阵眼：存储/功率半导体能否形成容量中军，而非单看涨停数量。</p>
-        </article>
-      </div>
-      <a class="back" href="#top">↑ 返回顶部</a>
-    </section>
-
-    <section id="risks">
-      <h2>风险提示与失效条件</h2>
-      <div class="notice">
-        <ul>
-          <li>交易新规是波动率催化，不天然等同于ST板块上涨。</li>
-          <li>再融资规则仍为征求意见稿；若市场交易股票供给增加，券商与成长股映射会失效。</li>
-          <li>半导体涨价若仅覆盖成本、未改善毛利，或前排高开低走，催化将快速兑现。</li>
-          <li>屹唐股份、天承科技解禁压力是个股风险，不应机械外推至整个半导体板块。</li>
-        </ul>
-      </div>
-      <a class="back" href="#top">↑ 返回顶部</a>
-    </section>
-
-    <section id="sources">
-      <h2>来源与时间</h2>
-      <table>
-        <thead><tr><th>等级</th><th>来源</th><th>发布时间／用途</th></tr></thead>
-        <tbody>
-          <tr><td>A｜官方</td><td><a href="https://big5.sse.com.cn/site/cht/www.sse.com.cn/lawandrules/sselawsrules2025/trade/universal/c/c_20260424_10816492.shtml" target="_blank" rel="noopener">上交所交易规则（2026年修订）</a></td><td>2026-07-06施行｜交易制度切换</td></tr>
-          <tr><td>A｜官方</td><td><a href="https://www.csrc.gov.cn/csrc/c100028/c7643223/content.shtml" target="_blank" rel="noopener">中国证监会：完善再融资规则征求意见</a></td><td>2026-07-03｜再融资制度催化</td></tr>
-          <tr><td>B｜权威财经</td><td><a href="https://news.10jqka.com.cn/20260705/c677956743.shtml" target="_blank" rel="noopener">券商中国：影响一周市场的十大消息</a></td><td>2026-07-05｜交易新规、存储涨价</td></tr>
-          <tr><td>B｜权威财经</td><td><a href="https://www.nbd.com.cn/articles/2026-07-05/4452410.html" target="_blank" rel="noopener">每日经济新闻：新规与存储业绩</a></td><td>2026-07-05｜盘前交叉核验</td></tr>
-          <tr><td>B｜公告摘要</td><td><a href="https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?CompanyCode=82643823&amp;gather=1&amp;id=12424520" target="_blank" rel="noopener">屹唐股份风险提示公告</a></td><td>7月8日｜51.88%解禁</td></tr>
-          <tr><td>B｜公告摘要</td><td><a href="https://stock.10jqka.com.cn/20260630/c677847759.shtml" target="_blank" rel="noopener">天承科技限售股上市流通</a></td><td>7月10日｜61.98%解禁</td></tr>
-        </tbody>
-      </table>
-      <p class="muted">事实来自上述链接；“方向、周期、证伪条件”为基于公开信息的短线推断，不构成投资建议。</p>
-      <a class="back" href="#top">↑ 返回顶部</a>
-    </section>
+    <aside aria-label="关键节点导航">
+      <strong>关键节点导航</strong>
+      <a href="#overview">动量总览</a>
+      <a href="#us">美股盘前</a>
+      <a href="#cn">A股盘后</a>
+      <a href="#sentiment">资金情绪</a>
+      <a href="#risks">风险/失效</a>
+      <a href="#sources">来源链接</a>
+    </aside>
   </main>
 
   <footer>
-    <div class="wrap">跨境股市 1-7 天超短线盘前雷达 · 仅保留可验证的即时催化</div>
+    <div class="layout">跨境股市 1-7 天超短线盘前雷达 · 只保留可验证的即时催化</div>
   </footer>
 </body>
 </html>
